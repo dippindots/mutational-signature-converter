@@ -21,7 +21,7 @@ if 'signatureInterpretation' in df:
 df = df.transpose()
 
 # change first column name to ENTITY_STABLE_ID
-df.rename({"Tumor_Sample_Barcode": "ENTITY_STABLE_ID"}, axis='index')
+df = df.rename({"Tumor_Sample_Barcode": "ENTITY_STABLE_ID"}, axis='index')
 
 # add name, description and statement columns
 mutatinoalSignatureDictionary = {
@@ -58,21 +58,21 @@ mutatinoalSignatureDictionary = {
 }
 
 def rowFuncForNameColumn(row):
-    if row.name == "Tumor_Sample_Barcode":
+    if row.name == "ENTITY_STABLE_ID":
         return "NAME"
     if row.name == "Nmut":
         return "Number of mutations"
     return "mutational signature " + row.name.split('_')[1]
 
 def rowFuncForDescriptionColumn(row):
-    if row.name == "Tumor_Sample_Barcode":
+    if row.name == "ENTITY_STABLE_ID":
         return "DESCRIPTION"
     if row.name == "Nmut":
         return "Number of mutations"
     return "mutational signature " + row.name.split('_')[1]
 
 def rowFuncForConfidenceStatementColumn(row):
-    if row.name == "Tumor_Sample_Barcode":
+    if row.name == "ENTITY_STABLE_ID":
         return "CONFIDENCE_STATEMENT"
     if row.name == "Nmut":
         return "NA"
