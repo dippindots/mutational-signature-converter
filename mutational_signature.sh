@@ -15,7 +15,7 @@ eval "$(conda shell.bash hook)"
 conda activate mutational_signature
 
 # get spectrum file
-${PYTHON_PATH}python ${PROJECT_PATH}make_spectrum.py ${DATA_PATH}data_mutations_extended.tmp.txt ${PROJECT_PATH}msk_impact.tmp ${FASTA_FILE_PATH}hg19.fa
+${PYTHON_PATH}python ${PROJECT_PATH}make_spectrum.py ${DATA_PATH}data_mutations_extended.txt ${PROJECT_PATH}msk_impact.tmp ${FASTA_FILE_PATH}hg19.fa
 
 # get output file
 Rscript ${PROJECT_PATH}signature.significance.R -i ${PROJECT_PATH}msk_impact.spectrum.txt --signature_file ${PROJECT_PATH}Stratton_signatures30.txt -o ${PROJECT_PATH}msk_impact.out -m ${PROJECT_PATH}signature.significance.stan -l ${R_LIBRARY}
