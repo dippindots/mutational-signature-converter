@@ -1,11 +1,11 @@
 #!/bin/bash
 
-PROJECT_PATH=""
-PYTHON_PATH=""
-DATA_PATH=""
-FASTA_FILE_PATH=""
-R_LIBRARY=""
-CONVERTER_PATH=""
+PROJECT_PATH="/home/zhaog/signature.significance/"
+PYTHON_PATH="/data/tools/anaconda2/envs/mutational_signature/bin/"
+DATA_PATH="/home/zhaog/data/"
+FASTA_FILE_PATH="/data/zhaog/"
+R_LIBRARY="/data/tools/anaconda2/envs/mutational_signature/lib/R/library"
+CONVERTER_PATH="/home/zhaog/mutational-signature-converter/"
 
 # initialize conda
 # reference: https://github.com/conda/conda/issues/7980#issuecomment-492784093
