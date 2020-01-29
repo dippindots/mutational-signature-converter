@@ -62,14 +62,14 @@ def rowFuncForNameColumn(row):
         return "NAME"
     if row.name == "Nmut":
         return "Number of mutations"
-    return "mutational signature " + row.name.split('_')[1]
+    return "mutational signature " + row.name.split('_')[1] + " " + row.name.split('_')[0]
 
 def rowFuncForDescriptionColumn(row):
     if row.name == "ENTITY_STABLE_ID":
         return "DESCRIPTION"
     if row.name == "Nmut":
         return "Number of mutations"
-    return "mutational signature " + row.name.split('_')[1]
+    return row.name.split('_')[0] + " data for mutational signature " + row.name.split('_')[1]
 
 def rowFuncForConfidenceStatementColumn(row):
     if row.name == "ENTITY_STABLE_ID":
