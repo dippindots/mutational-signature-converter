@@ -71,6 +71,13 @@ def rowFuncForDescriptionColumn(row):
         return "Number of mutations"
     return row.name.split('_')[0] + " data for mutational signature " + row.name.split('_')[1]
 
+def rowFuncForUrlColumn(row):
+    if row.name == "ENTITY_STABLE_ID":
+        return "URL"
+    if row.name == "Nmut":
+        return "NA"
+    return "https://cancer.sanger.ac.uk/cosmic/signatures_v2"
+
 def rowFuncForConfidenceStatementColumn(row):
     if row.name == "ENTITY_STABLE_ID":
         return "CONFIDENCE_STATEMENT"
@@ -80,6 +87,7 @@ def rowFuncForConfidenceStatementColumn(row):
 
 df['NAME'] = df.apply(rowFuncForNameColumn, axis = 1)
 df['DESCRIPTION'] = df.apply(rowFuncForDescriptionColumn, axis = 1)
+df['URL'] = df.apply(rowFuncForDescriptionColumn, axis = 1)
 df['CONFIDENCE_STATEMENT'] = df.apply(rowFuncForConfidenceStatementColumn, axis = 1)
 
 # get a list of columns
@@ -88,7 +96,8 @@ cols = list(df)
 # move the column to head of list using index, pop and insert
 cols.insert(0, cols.pop(cols.index('NAME')))
 cols.insert(1, cols.pop(cols.index('DESCRIPTION')))
-cols.insert(2, cols.pop(cols.index('CONFIDENCE_STATEMENT')))
+cols.insert(2, cols.pop(cols.index('URL')))
+cols.insert(3, cols.pop(cols.index('CONFIDENCE_STATEMENT')))
 
 # reorder
 df = df.loc[:, cols]
