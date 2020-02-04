@@ -57,19 +57,24 @@ mutatinoalSignatureDictionary = {
     "30": "Signature 30 is detected in this case. We are not confident that we are able to detect signature 30 in the IMPACT cohort."
 }
 
+displayNameDictionary = {
+    "mean": "exposure",
+    "confidence": "confidence"
+}
+
 def rowFuncForNameColumn(row):
     if row.name == "ENTITY_STABLE_ID":
         return "NAME"
     if row.name == "Nmut":
         return "Number of mutations"
-    return "mutational signature " + row.name.split('_')[1] + " " + row.name.split('_')[0]
+    return "mutational signature " + row.name.split('_')[1] + " " + displayNameDictionary[row.name.split('_')[0]]
 
 def rowFuncForDescriptionColumn(row):
     if row.name == "ENTITY_STABLE_ID":
         return "DESCRIPTION"
     if row.name == "Nmut":
         return "Number of mutations"
-    return row.name.split('_')[0] + " data for mutational signature " + row.name.split('_')[1]
+    return displayNameDictionary[row.name.split('_')[0]] + " data for mutational signature " + row.name.split('_')[1]
 
 def rowFuncForUrlColumn(row):
     if row.name == "ENTITY_STABLE_ID":
