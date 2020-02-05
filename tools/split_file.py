@@ -29,7 +29,7 @@ if 'tmp' in df2:
     del df2['tmp']
 
 # prepare the third file for confidence data
-df3 = df.loc[df['ENTITY_STABLE_ID'].str.contains('mean')].copy()
+df3 = df.loc[df['ENTITY_STABLE_ID'].str.contains('confidence')].copy()
 
 df3['tmp'] = df3.apply(rowFuncForTmpColumn, axis = 1)
 
@@ -40,6 +40,6 @@ if 'tmp' in df3:
     del df3['tmp']
 
 # write the output file
-out1 = df1.to_csv(output_file + "_Nmut", sep='\t', header=False)
-out2 = df2.to_csv(output_file + "_Mean", sep='\t', header=False)
-out3 = df3.to_csv(output_file + "_Confidence", sep='\t', header=False)
+out1 = df1.to_csv(output_file + "_Nmut.txt", sep='\t', header=True, index=False)
+out2 = df2.to_csv(output_file + "_Exposure.txt", sep='\t', header=True, index=False)
+out3 = df3.to_csv(output_file + "_Confidence.txt", sep='\t', header=True, index=False)

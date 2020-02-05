@@ -92,7 +92,7 @@ def rowFuncForConfidenceStatementColumn(row):
 
 df['NAME'] = df.apply(rowFuncForNameColumn, axis = 1)
 df['DESCRIPTION'] = df.apply(rowFuncForDescriptionColumn, axis = 1)
-df['URL'] = df.apply(rowFuncForDescriptionColumn, axis = 1)
+df['URL'] = df.apply(rowFuncForUrlColumn, axis = 1)
 df['CONFIDENCE_STATEMENT'] = df.apply(rowFuncForConfidenceStatementColumn, axis = 1)
 
 # get a list of columns
