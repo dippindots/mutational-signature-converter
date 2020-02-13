@@ -58,7 +58,7 @@ mutatinoalSignatureDictionary = {
 }
 
 displayNameDictionary = {
-    "mean": "exposure",
+    "mean": "contribution",
     "confidence": "confidence"
 }
 
@@ -67,7 +67,7 @@ def rowFuncForNameColumn(row):
         return "NAME"
     if row.name == "Nmut":
         return "Number of mutations"
-    return "mutational signature " + row.name.split('_')[1] + " " + displayNameDictionary[row.name.split('_')[0]]
+    return "signature " + row.name.split('_')[1]
 
 def rowFuncForDescriptionColumn(row):
     if row.name == "ENTITY_STABLE_ID":
