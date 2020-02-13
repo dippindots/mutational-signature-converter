@@ -20,8 +20,16 @@ def rowFuncForTmpColumn(row):
     if len(row["ENTITY_STABLE_ID"].split("_")) >= 2 :
         return row["ENTITY_STABLE_ID"].split("_")[1]
 
-df2['tmp'] = df2.apply(rowFuncForTmpColumn, axis = 1)
+def rowFuncToOverrideStableIdColumnContribution(row):
+    if len(row["ENTITY_STABLE_ID"].split("_")) >= 2 :
+        return "mutational_signature_contribution_" + row["ENTITY_STABLE_ID"].split("_")[1]
 
+def rowFuncToOverrideStableIdColumnConfidence(row):
+    if len(row["ENTITY_STABLE_ID"].split("_")) >= 2 :
+        return "mutational_signature_confidence_" + row["ENTITY_STABLE_ID"].split("_")[1]
+
+df2['tmp'] = df2.apply(rowFuncForTmpColumn, axis = 1)
+df2['ENTITY_STABLE_ID'] = df2.apply(rowFuncToOverrideStableIdColumnContribution, axis = 1)
 df2['tmp'] = pd.to_numeric(df2['tmp'], errors='coerce')
 df2 = df2.sort_values('tmp')
 
@@ -32,7 +40,7 @@ if 'tmp' in df2:
 df3 = df.loc[df['ENTITY_STABLE_ID'].str.contains('confidence')].copy()
 
 df3['tmp'] = df3.apply(rowFuncForTmpColumn, axis = 1)
-
+df3['ENTITY_STABLE_ID'] = df3.apply(rowFuncToOverrideStableIdColumnConfidence, axis = 1)
 df3['tmp'] = pd.to_numeric(df3['tmp'], errors='coerce')
 df3 = df3.sort_values('tmp')
 
@@ -41,5 +49,5 @@ if 'tmp' in df3:
 
 # write the output file
 out1 = df1.to_csv(output_file + "_Nmut.txt", sep='\t', header=True, index=False)
-out2 = df2.to_csv(output_file + "_Exposure.txt", sep='\t', header=True, index=False)
+out2 = df2.to_csv(output_file + "_Contribution.txt", sep='\t', header=True, index=False)
 out3 = df3.to_csv(output_file + "_Confidence.txt", sep='\t', header=True, index=False)
